@@ -1,6 +1,7 @@
 on: [push, pull_request]
 
 jobs:
+  runs-on: default
   build:
     actions:
     - run: echo Hello World change
