@@ -2,7 +2,6 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     actions:
     - run: echo Hello World change
     - uses: ./hello-world-action
