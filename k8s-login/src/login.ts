@@ -1,4 +1,5 @@
 import * as core from "@actions/core";
+let fs = require('fs');
 
 function run() {
     let kubeconfig = core.getInput('kubeconfig');
