@@ -8,5 +8,5 @@ jobs:
       - run: echo hi
       - uses: ./k8s-login
         with:
-          kubeconfig: $(KUBECONFIG)
+          kubeconfig: ${{ variables.KUBECONFIG }}
         id: login
