@@ -18,7 +18,7 @@ function getAzureAccessToken(): Promise<string> {
         webRequest.method = "POST";
         webRequest.uri = `https://login.microsoftonline.com/${tenantId}/oauth2/token/`;
         webRequest.body = querystring.stringify({
-            resource: tenantId,
+            resource: 'https://management.azure.com',
             client_id: servicePrincipalId,
             grant_type: "client_credentials",
             client_secret: servicePrincipalKey
