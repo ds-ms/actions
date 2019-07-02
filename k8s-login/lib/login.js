@@ -1,11 +1,11 @@
 "use strict";
-exports.__esModule = true;
-var core = require("@actions/core");
+Object.defineProperty(exports, "__esModule", { value: true });
+const core = require("@actions/core");
 function run() {
-    var kubeconfig = core.getInput('kubeconfig');
+    let kubeconfig = core.getInput('kubeconfig');
     if (!kubeconfig) {
         throw 'Kubeconfig not received';
     }
-    console.log("kubeconfig: " + kubeconfig);
+    console.log(`kubeconfig: ${kubeconfig}`);
 }
 run();
