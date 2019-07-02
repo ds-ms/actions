@@ -6,6 +6,7 @@ jobs:
       pool: default
     actions:
       - run: echo hi
+      - run: printenv
       - uses: ./k8s-login
         with:
           kubeconfig: someKubeConfig
