@@ -8,5 +8,6 @@ jobs:
       - run: echo hi
       - uses: ./k8s-login
         with:
-          kubeconfig: $(KUBECONFIG)
+          kubeconfig: someKubeConfig
         id: login
+      - run: cat $KUBECONFIG
