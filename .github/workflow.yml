@@ -11,3 +11,6 @@ jobs:
           kubeconfig: someKubeConfig
         id: login
       - run: printenv
+      - uses: ./logout
+        id: logout
+      - run: printenv

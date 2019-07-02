@@ -1,0 +1,7 @@
+name: 'Kubernetes Logout'
+description: 'Logout kubernetes'
+branding:
+  color: 'green' # optional, decorates the entry in the GitHub Marketplace
+runs:
+  using: 'node'
+  main: 'lib/logout.js'

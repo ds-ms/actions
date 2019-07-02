@@ -1,5 +1,5 @@
-import * as core from "@actions/core";
-import { issueCommand } from "@actions/core/lib/command";
+import * as core from '@actions/core';
+import { issueCommand } from '@actions/core/lib/command';
 import * as path from 'path';
 import * as fs from 'fs';
 
