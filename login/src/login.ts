@@ -10,7 +10,7 @@ function getRandomInt(max) {
 function run() {
     let kubeconfig = core.getInput('kubeconfig');
     if (!kubeconfig) {
-        throw 'Kubeconfig not received';
+        core.setFailed('Kubeconfig not received');
     }
     const runnerTempDirectory = process.env['RUNNER_TEMPDIRECTORY']; // Using process.env until the core libs are updated
     const kubeconfigPath = path.join(runnerTempDirectory, `kubeconfig_${getRandomInt(100)}`);
