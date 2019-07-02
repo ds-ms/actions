@@ -16,7 +16,7 @@ function getAzureAccessToken(): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         let webRequest = new WebRequest();
         webRequest.method = "POST";
-        webRequest.uri = this.authorityUrl + this.domain + "/oauth2/token/";
+        webRequest.uri = `https://login.microsoftonline.com/${tenantId}/oauth2/token/`;
         webRequest.body = querystring.stringify({
             resource: tenantId,
             client_id: servicePrincipalId,
@@ -87,4 +87,4 @@ async function run() {
     console.log('KUBECONFIG environment variable is set');
 }
 
-run();
+run().catch(core.setFailed);

@@ -10,9 +10,9 @@ inputs:
     required: true
     default: ''
   tenantId:
-    description: 'Service Principal Key'
+    description: 'Tenant ID'
     required: true
-    default: ''
+    default: 'common'
   subscriptionId:
     description: 'Subscription ID'
     required: true

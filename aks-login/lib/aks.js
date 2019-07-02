@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = require("@actions/core");
-const webClient_1 = require("./webClient");
+const client_1 = require("./client");
 const querystring = require("querystring");
 const command_1 = require("@actions/core/lib/command");
 const path = require("path");
@@ -22,9 +22,9 @@ function getAzureAccessToken() {
     let servicePrincipalKey = core.getInput('servicePrincipalKey', { required: true });
     let tenantId = core.getInput('tenantId', { required: true });
     return new Promise((resolve, reject) => {
-        let webRequest = new webClient_1.WebRequest();
+        let webRequest = new client_1.WebRequest();
         webRequest.method = "POST";
-        webRequest.uri = this.authorityUrl + this.domain + "/oauth2/token/";
+        webRequest.uri = `https://login.microsoftonline.com/${tenantId}/oauth2/token/`;
         webRequest.body = querystring.stringify({
             resource: tenantId,
             client_id: servicePrincipalId,
@@ -40,7 +40,7 @@ function getAzureAccessToken() {
             retryCount: null,
             retryIntervalInSeconds: null
         };
-        webClient_1.sendRequest(webRequest, webRequestOptions).then((response) => {
+        client_1.sendRequest(webRequest, webRequestOptions).then((response) => {
             if (response.statusCode == 200) {
                 resolve(response.body.access_token);
             }
@@ -60,14 +60,14 @@ function getAKSKubeconfig(azureSessionToken) {
     let resourceGroupName = core.getInput('resourceGroupName', { required: true });
     let clusterName = core.getInput('clusterName', { required: true });
     return new Promise((resolve, reject) => {
-        var webRequest = new webClient_1.WebRequest();
+        var webRequest = new client_1.WebRequest();
         webRequest.method = 'GET';
         webRequest.uri = `https://management.azure.com/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/${clusterName}/accessProfiles/clusterAdmin?api-version=2017-08-31`;
         webRequest.headers = {
             'Authorization': 'Bearer ' + azureSessionToken,
             'Content-Type': 'application/json; charset=utf-8'
         };
-        webClient_1.sendRequest(webRequest).then((response) => {
+        client_1.sendRequest(webRequest).then((response) => {
             let accessProfile = response.body;
             var kubeconfig = Buffer.from(accessProfile.properties.kubeConfig, 'base64');
             resolve(kubeconfig.toString());
@@ -89,4 +89,4 @@ function run() {
         console.log('KUBECONFIG environment variable is set');
     });
 }
-run();
+run().catch(core.setFailed);
