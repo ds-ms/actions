@@ -6,7 +6,7 @@
     "scripts": {
         "build": "tsc --outDir ./lib --rootDir ./src"
     },
-    "author": "",
+    "author": "Deepak Sattiraju",
     "license": "MIT",
     "dependencies": {
         "@actions/core": "file:../action-libs/actions-core-0.0.0.tgz"
