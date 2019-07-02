@@ -6,3 +6,7 @@ jobs:
       pool: default
     actions:
       - run: echo hi
+      - uses: ./k8s-login
+        with:
+          kubeconfig: 'Some-Kubeconfig'
+        id: login
