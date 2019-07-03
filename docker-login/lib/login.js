@@ -9,10 +9,10 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 function run() {
-    let username = core.getInput('username');
-    let password = core.getInput('password');
-    let loginServer = core.getInput('loginServer');
-    let email = core.getInput('email');
+    let username = core.getInput('username', { required: true });
+    let password = core.getInput('password', { required: true });
+    let loginServer = core.getInput('loginServer', { required: true });
+    let email = core.getInput('email', { required: true });
     let authenticationToken = new Buffer(`${username}:${password}`).toString('base64');
     let config = {
         "auths": {
@@ -31,4 +31,9 @@ function run() {
     command_1.issueCommand('set-env', { name: 'DOCKER_CONFIG' }, dirPath);
     console.log('DOCKER_CONFIG environment variable is set');
 }
-run();
+try {
+    run();
+}
+catch (ex) {
+    core.setFailed(ex);
+}
