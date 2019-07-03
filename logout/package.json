@@ -1,6 +1,6 @@
 {
-    "name": "k8s-logout",
-    "version": "1.0.0",
+    "name": "logout",
+    "version": "0.0.0",
     "description": "",
     "main": "lib/logout.js",
     "scripts": {
