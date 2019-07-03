@@ -7,7 +7,7 @@ import * as toolCache from '@actions/tool-cache';
 import * as core from '@actions/core';
 
 const kubectlToolName = 'kubectl';
-const stableKubectlVersion = 'v1.14.0';
+const stableKubectlVersion = 'v1.15.0';
 const stableVersionUrl = 'https://storage.googleapis.com/kubernetes-release/release/stable.txt';
 
 function getExecutableExtension(): string {
