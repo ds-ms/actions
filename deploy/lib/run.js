@@ -11,9 +11,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const toolCache = require("@actions/tool-cache");
 const core = require("@actions/core");
 const exec = require("@actions/exec");
-let kubectlPath = toolCache.findAllVersions('kubectl')[0];
+const path = require("path");
+const os = require("os");
+let kubectlPath = toolCache.find('kubectl', toolCache.findAllVersions('kubectl')[0]);
 if (!kubectlPath) {
     core.setFailed('Kubectl is not installed');
+}
+kubectlPath = path.join(kubectlPath, `kubectl${getExecutableExtension()}`);
+function getExecutableExtension() {
+    if (os.type().match(/^Win/)) {
+        return '.exe';
+    }
+    return '';
+}
+function deploy(manifests) {
+    return __awaiter(this, void 0, void 0, function* () {
+        for (var i = 0; i < manifests.length; i++) {
+            let manifest = manifests[i];
+            yield exec.exec(kubectlPath, ['apply', '-f', manifest, '--namespace', namespace]);
+        }
+    });
 }
 let manifestsInput = core.getInput('manifests');
 if (!manifestsInput) {
@@ -24,12 +41,4 @@ if (!namespace) {
     namespace = 'default';
 }
 let manifests = manifestsInput.split('\n');
-function deploy(manifests) {
-    return __awaiter(this, void 0, void 0, function* () {
-        for (var i = 0; i < manifests.length; i++) {
-            let manifest = manifests[i];
-            yield exec.exec(kubectlPath, ['apply', '-f', manifest, '--namespace', namespace]);
-        }
-    });
-}
 deploy(manifests).catch(core.setFailed);

@@ -1,10 +1,27 @@
 import * as toolCache from '@actions/tool-cache';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as path from 'path';
+import * as os from 'os';
 
-let kubectlPath = toolCache.findAllVersions('kubectl')[0];
+let kubectlPath = toolCache.find('kubectl', toolCache.findAllVersions('kubectl')[0]);
 if (!kubectlPath) {
     core.setFailed('Kubectl is not installed');
+}
+kubectlPath = path.join(kubectlPath, `kubectl${getExecutableExtension()}`);
+
+function getExecutableExtension(): string {
+    if (os.type().match(/^Win/)) {
+        return '.exe';
+    }
+    return '';
+}
+
+async function deploy(manifests: string[]) {
+    for (var i = 0; i < manifests.length; i++) {
+        let manifest = manifests[i];
+        await exec.exec(kubectlPath, ['apply', '-f', manifest, '--namespace', namespace]);
+    }
 }
 
 let manifestsInput = core.getInput('manifests');
@@ -15,12 +32,6 @@ let namespace = core.getInput('namespace');
 if (!namespace) {
     namespace = 'default';
 }
-let manifests = manifestsInput.split('\n');
-async function deploy(manifests: string[]) {
-    for (var i = 0; i < manifests.length; i++) {
-        let manifest = manifests[i];
-        await exec.exec(kubectlPath, ['apply', '-f', manifest, '--namespace', namespace]);
-    }
-}
 
+let manifests = manifestsInput.split('\n');
 deploy(manifests).catch(core.setFailed);
