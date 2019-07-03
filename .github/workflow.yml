@@ -10,5 +10,8 @@ jobs:
         with:
           kubeconfig: someKubeConfig
         id: login
+      - uses: ds-ms/k8s-actions/install-kubectl@master
+        id: install
+      - run: ${{ actions.install.outputs.kubectlPath }} version --client=true
       - uses: ./logout
         id: logout
