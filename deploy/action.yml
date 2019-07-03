@@ -9,14 +9,6 @@ inputs:
     description: 'namespace'
     required: true
     default: ''
-  containers:
-    description: 'Containers'
-    required: true
-    default: ''
-  imagePullSecrets:
-    description: 'ImagePullSecret to pull image from private registry'
-    required: true
-    default: ''
 branding:
   color: 'green' # optional, decorates the entry in the GitHub Marketplace
 runs:
