@@ -1,0 +1,18 @@
+{
+    "name": "docker-logout",
+    "version": "0.0.0",
+    "description": "",
+    "main": "lib/logout.js",
+    "scripts": {
+        "build": "tsc --outDir ./lib --rootDir ./src"
+    },
+    "author": "Deepak Sattiraju",
+    "license": "MIT",
+    "dependencies": {
+        "@actions/io": "file:../action-libs/actions-io-0.0.0.tgz",
+        "@actions/core": "file:../action-libs/actions-core-0.0.0.tgz"
+    },
+    "devDependencies": {
+        "@types/node": "^12.0.10"
+    }
+}
