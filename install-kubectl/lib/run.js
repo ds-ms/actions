@@ -15,7 +15,7 @@ const fs = require("fs");
 const toolCache = require("@actions/tool-cache");
 const core = require("@actions/core");
 const kubectlToolName = 'kubectl';
-const stableKubectlVersion = 'v1.14.0';
+const stableKubectlVersion = 'v1.15.0';
 const stableVersionUrl = 'https://storage.googleapis.com/kubernetes-release/release/stable.txt';
 function getExecutableExtension() {
     if (os.type().match(/^Win/)) {
@@ -75,6 +75,7 @@ function run() {
         }
         let cachedPath = yield downloadKubectl(version);
         console.log(`Kubectl tool version: '${version}' has been cached at ${cachedPath}`);
+        core.setOutput('kubectlPath', cachedPath);
     });
 }
 run().catch(core.setFailed);
