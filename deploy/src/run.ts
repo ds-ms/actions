@@ -17,21 +17,25 @@ function getExecutableExtension(): string {
     return '';
 }
 
-async function deploy(manifests: string[]) {
+async function deploy(manifests: string[], namespace: string) {
     for (var i = 0; i < manifests.length; i++) {
         let manifest = manifests[i];
         await exec.exec(kubectlPath, ['apply', '-f', manifest, '--namespace', namespace]);
     }
 }
 
-let manifestsInput = core.getInput('manifests');
-if (!manifestsInput) {
-    core.setFailed('No manifests supplied to deploy');
-}
-let namespace = core.getInput('namespace');
-if (!namespace) {
-    namespace = 'default';
+async function run() {
+    let manifestsInput = core.getInput('manifests');
+    if (!manifestsInput) {
+        core.setFailed('No manifests supplied to deploy');
+    }
+    let namespace = core.getInput('namespace');
+    if (!namespace) {
+        namespace = 'default';
+    }
+
+    let manifests = manifestsInput.split('\n');
+    await deploy(manifests, namespace);
 }
 
-let manifests = manifestsInput.split('\n');
-deploy(manifests).catch(core.setFailed);
+run().catch(core.setFailed);

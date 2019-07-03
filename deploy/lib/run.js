@@ -24,7 +24,7 @@ function getExecutableExtension() {
     }
     return '';
 }
-function deploy(manifests) {
+function deploy(manifests, namespace) {
     return __awaiter(this, void 0, void 0, function* () {
         for (var i = 0; i < manifests.length; i++) {
             let manifest = manifests[i];
@@ -32,13 +32,18 @@ function deploy(manifests) {
         }
     });
 }
-let manifestsInput = core.getInput('manifests');
-if (!manifestsInput) {
-    core.setFailed('No manifests supplied to deploy');
+function run() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let manifestsInput = core.getInput('manifests');
+        if (!manifestsInput) {
+            core.setFailed('No manifests supplied to deploy');
+        }
+        let namespace = core.getInput('namespace');
+        if (!namespace) {
+            namespace = 'default';
+        }
+        let manifests = manifestsInput.split('\n');
+        yield deploy(manifests, namespace);
+    });
 }
-let namespace = core.getInput('namespace');
-if (!namespace) {
-    namespace = 'default';
-}
-let manifests = manifestsInput.split('\n');
-deploy(manifests).catch(core.setFailed);
+run().catch(core.setFailed);
