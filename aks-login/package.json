@@ -9,7 +9,7 @@
     "author": "Deepak Sattiraju",
     "license": "MIT",
     "dependencies": {
-        "@actions/core": "file:../action-libs/actions-core-0.0.0.tgz",
+        "@actions/core": "file:../action-modules/actions-core-0.0.0.tgz",
         "typed-rest-client": "1.5.0"
     },
     "devDependencies": {

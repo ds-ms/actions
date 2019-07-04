@@ -9,10 +9,10 @@
     "author": "Deepak Sattiraju",
     "license": "MIT",
     "dependencies": {
-        "@actions/tool-cache": "file:../action-libs/actions-tool-cache-0.0.0.tgz",
-        "@actions/io": "file:../action-libs/actions-io-0.0.0.tgz",
-        "@actions/core": "file:../action-libs/actions-core-0.0.0.tgz",
-        "@actions/exec": "file:../action-libs/actions-exec-0.0.0.tgz",
+        "@actions/tool-cache": "file:../action-modules/actions-tool-cache-0.0.0.tgz",
+        "@actions/io": "file:../action-modules/actions-io-0.0.0.tgz",
+        "@actions/core": "file:../action-modules/actions-core-0.0.0.tgz",
+        "@actions/exec": "file:../action-modules/actions-exec-0.0.0.tgz",
         "js-yaml": "3.13.1"
     },
     "devDependencies": {
