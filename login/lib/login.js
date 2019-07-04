@@ -14,7 +14,7 @@ function getKubeconfig() {
     }
     const clusterUrl = core.getInput('clusterUrl', { required: true });
     let certificate = core.getInput('certificate');
-    let token = Buffer.from(core.getInput('token'), 'base64');
+    let token = Buffer.from(core.getInput('token'), 'base64').toString();
     if (!certificate)
         certificate = '';
     const kubeconfigObject = {
