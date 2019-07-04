@@ -3,7 +3,19 @@ description: 'Login kubernetes'
 inputs: 
   kubeconfig:
     description: 'Kubernetes Config'
-    required: true
+    required: false
+    default: ''
+  clusterUrl:
+    description: 'Kubernetes Config'
+    required: false
+    default: ''
+  certificate:
+    description: 'Certificate for connection to the cluster'
+    required: false
+    default: ''
+  token:
+    description: 'Service account token'
+    required: false
     default: ''
 branding:
   color: 'green' # optional, decorates the entry in the GitHub Marketplace
