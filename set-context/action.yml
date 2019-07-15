@@ -1,4 +1,4 @@
-name: 'Kubernetes Login'
+name: 'Kubernetes set context'
 description: 'Login kubernetes'
 inputs: 
   kubeconfig:
