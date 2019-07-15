@@ -1,14 +1,14 @@
 # Usage
 
 ```yaml
-- uses: ds-ms/k8s-actions/login@master
+- uses: ds-ms/k8s-actions/set-context@master
   with:
     kubeconfig: '<your kubeconfig>'
   id: login
 ```
 
 ```yaml
-- uses: ds-ms/k8s-actions/login@master
+- uses: ds-ms/k8s-actions/set-context@master
   with:
     clusterUrl: '<your kubernetes cluster url>'
     certificate: '<service account certificate>' # ca.crt value from the result of the below script
