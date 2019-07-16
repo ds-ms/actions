@@ -6,7 +6,7 @@ inputs:
     required: false
     default: ''
   clusterUrl:
-    description: 'Kubernetes Config'
+    description: 'Cluster Url'
     required: false
     default: ''
   certificate:
@@ -15,6 +15,30 @@ inputs:
     default: ''
   token:
     description: 'Service account token'
+    required: false
+    default: ''
+  servicePrincipalId:
+    description: 'Service Principal ID'
+    required: false
+    default: ''
+  servicePrincipalKey:
+    description: 'Service Principal Key'
+    required: false
+    default: ''
+  tenantId:
+    description: 'Tenant ID'
+    required: false
+    default: 'common'
+  subscriptionId:
+    description: 'Subscription ID'
+    required: false
+    default: ''
+  resourceGroupName:
+    description: 'Resource Group Name'
+    required: false
+    default: ''
+  clusterName:
+    description: 'AKS Cluster Name'
     required: false
     default: ''
 branding:
