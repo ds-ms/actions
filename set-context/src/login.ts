@@ -53,7 +53,7 @@ function getAzureAccessToken(): Promise<string> {
     });
 }
 
-function getAKSKubeconfig(azureSessionToken): Promise<string> {
+function getAKSKubeconfig(azureSessionToken: string): Promise<string> {
     let subscriptionId = core.getInput('subscriptionId', { required: true });
     let resourceGroupName = core.getInput('resourceGroupName', { required: true });
     let clusterName = core.getInput('clusterName', { required: true });
