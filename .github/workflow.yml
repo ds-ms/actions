@@ -6,7 +6,7 @@ jobs:
       pool: default
     actions:
       - run: echo hi
-      - uses: ./login
+      - uses: ./set-context
         with:
           kubeconfig: someKubeConfig
         id: login
