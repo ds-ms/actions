@@ -44,5 +44,5 @@ inputs:
 branding:
   color: 'green' # optional, decorates the entry in the GitHub Marketplace
 runs:
-  using: 'node'
+  using: 'node12'
   main: 'lib/login.js'
